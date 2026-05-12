@@ -7,151 +7,216 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header>
-    <h1>Campus Club Event Management System</h1>
-    <p>Manage club events, RSVPs, attendance, and reports.</p>
-  </header>
+  <aside class="sidebar">
+    <h2>BlueGrid</h2>
+    <p>Club Event System</p>
 
-  <main>
-    <section class="card">
-      <h2>1. Login</h2>
-      <form id="loginForm">
-        <label>Name</label>
-        <input type="text" id="loginName" placeholder="Enter your name" required />
+    <nav>
+      <button class="nav-btn active" data-page="loginPage">Login</button>
+      <button class="nav-btn" data-page="dashboardPage">Dashboard</button>
+      <button class="nav-btn" data-page="eventPage">Create Event</button>
+      <button class="nav-btn" data-page="rsvpPage">RSVP</button>
+      <button class="nav-btn" data-page="attendancePage">Attendance</button>
+      <button class="nav-btn" data-page="reportPage">Reports</button>
+    </nav>
+  </aside>
 
-        <label>Email</label>
-        <input type="email" id="loginEmail" placeholder="Enter your email" required />
+  <main class="main-content">
+    <header class="topbar">
+      <div>
+        <h1>Campus Club Event Management System</h1>
+        <p>Manage events, RSVPs, attendance, and participation reports.</p>
+      </div>
+      <span id="currentUserBadge">Not logged in</span>
+    </header>
 
-        <label>Role</label>
-        <select id="loginRole" required>
-          <option value="">Select role</option>
-          <option value="member">Member</option>
-          <option value="officer">Club Officer</option>
-        </select>
+    <section id="loginPage" class="page active-page">
+      <div class="card">
+        <h2>Login</h2>
+        <p class="muted">Enter your account information to access the system.</p>
 
-        <button type="submit">Login</button>
-      </form>
-      <p id="loginMessage"></p>
+        <form id="loginForm">
+          <label>Name</label>
+          <input type="text" id="loginName" placeholder="Enter your name" required />
+
+          <label>Email</label>
+          <input type="email" id="loginEmail" placeholder="Enter your email" required />
+
+          <label>Password</label>
+          <input type="password" id="loginPassword" placeholder="Enter password" required />
+
+          <label>Role</label>
+          <select id="loginRole" required>
+            <option value="">Select role</option>
+            <option value="member">Member</option>
+            <option value="officer">Club Officer</option>
+          </select>
+
+          <button type="submit">Login</button>
+        </form>
+
+        <p id="loginMessage" class="success-message"></p>
+      </div>
     </section>
 
-    <section class="card">
-      <h2>2. Create Event</h2>
-      <form id="eventForm">
-        <label>Event Name</label>
-        <input type="text" id="eventName" placeholder="Welcome Event" required />
+    <section id="dashboardPage" class="page">
+      <div class="dashboard-grid">
+        <div class="stat-card">
+          <h3>Total Users</h3>
+          <p id="userCount">0</p>
+        </div>
 
-        <label>Event Date</label>
-        <input type="date" id="eventDate" required />
+        <div class="stat-card">
+          <h3>Total Events</h3>
+          <p id="eventCount">0</p>
+        </div>
 
-        <label>Event Location</label>
-        <input type="text" id="eventLocation" placeholder="Student Center" required />
+        <div class="stat-card">
+          <h3>Total RSVPs</h3>
+          <p id="rsvpCount">0</p>
+        </div>
 
-        <button type="submit">Create Event</button>
-      </form>
+        <div class="stat-card">
+          <h3>Attendance Records</h3>
+          <p id="attendanceCount">0</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>System Overview</h2>
+        <p>
+          This dashboard summarizes club participation activity. Users can create events,
+          submit RSVPs, record attendance, and view report data.
+        </p>
+      </div>
     </section>
 
-    <section class="card">
-      <h2>3. RSVP to Event</h2>
-      <form id="rsvpForm">
-        <label>User ID</label>
-        <input type="number" id="rsvpUserId" placeholder="1" required />
+    <section id="eventPage" class="page">
+      <div class="card">
+        <h2>Create Event</h2>
+        <form id="eventForm">
+          <label>Event Name</label>
+          <input type="text" id="eventName" placeholder="Welcome Event" required />
 
-        <label>Event ID</label>
-        <input type="number" id="rsvpEventId" placeholder="1" required />
+          <label>Event Date</label>
+          <input type="date" id="eventDate" required />
 
-        <label>RSVP Status</label>
-        <select id="rsvpStatus" required>
-          <option value="">Select status</option>
-          <option value="Going">Going</option>
-          <option value="Maybe">Maybe</option>
-          <option value="Not Going">Not Going</option>
-        </select>
+          <label>Event Location</label>
+          <input type="text" id="eventLocation" placeholder="Student Center" required />
 
-        <button type="submit">Submit RSVP</button>
-      </form>
+          <button type="submit">Create Event</button>
+        </form>
+        <p id="eventMessage" class="success-message"></p>
+      </div>
     </section>
 
-    <section class="card">
-      <h2>4. Record Attendance</h2>
-      <form id="attendanceForm">
-        <label>User ID</label>
-        <input type="number" id="attendanceUserId" placeholder="1" required />
+    <section id="rsvpPage" class="page">
+      <div class="card">
+        <h2>RSVP to Event</h2>
+        <form id="rsvpForm">
+          <label>User ID</label>
+          <input type="number" id="rsvpUserId" placeholder="1" required />
 
-        <label>Event ID</label>
-        <input type="number" id="attendanceEventId" placeholder="1" required />
+          <label>Event ID</label>
+          <input type="number" id="rsvpEventId" placeholder="1" required />
 
-        <label>Attended</label>
-        <select id="attended" required>
-          <option value="">Select option</option>
-          <option value="true">Yes</option>
-          <option value="false">No</option>
-        </select>
+          <label>RSVP Status</label>
+          <select id="rsvpStatus" required>
+            <option value="">Select status</option>
+            <option value="Going">Going</option>
+            <option value="Maybe">Maybe</option>
+            <option value="Not Going">Not Going</option>
+          </select>
 
-        <button type="submit">Record Attendance</button>
-      </form>
+          <button type="submit">Submit RSVP</button>
+        </form>
+        <p id="rsvpMessage" class="success-message"></p>
+      </div>
     </section>
 
-    <section class="card report">
-      <h2>5. Attendance Report</h2>
+    <section id="attendancePage" class="page">
+      <div class="card">
+        <h2>Record Attendance</h2>
+        <form id="attendanceForm">
+          <label>User ID</label>
+          <input type="number" id="attendanceUserId" placeholder="1" required />
 
-      <h3>Users</h3>
-      <table>
-        <thead>
-          <tr>
-            <th>User ID</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Role</th>
-          </tr>
-        </thead>
-        <tbody id="usersTable"></tbody>
-      </table>
+          <label>Event ID</label>
+          <input type="number" id="attendanceEventId" placeholder="1" required />
 
-      <h3>Events</h3>
-      <table>
-        <thead>
-          <tr>
-            <th>Event ID</th>
-            <th>Event Name</th>
-            <th>Date</th>
-            <th>Location</th>
-            <th>Created By</th>
-          </tr>
-        </thead>
-        <tbody id="eventsTable"></tbody>
-      </table>
+          <label>Attended</label>
+          <select id="attended" required>
+            <option value="">Select option</option>
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+          </select>
 
-      <h3>RSVPs</h3>
-      <table>
-        <thead>
-          <tr>
-            <th>RSVP ID</th>
-            <th>User ID</th>
-            <th>Event ID</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody id="rsvpsTable"></tbody>
-      </table>
+          <button type="submit">Record Attendance</button>
+        </form>
+        <p id="attendanceMessage" class="success-message"></p>
+      </div>
+    </section>
 
-      <h3>Attendance</h3>
-      <table>
-        <thead>
-          <tr>
-            <th>Attendance ID</th>
-            <th>User ID</th>
-            <th>Event ID</th>
-            <th>Attended</th>
-          </tr>
-        </thead>
-        <tbody id="attendanceTable"></tbody>
-      </table>
+    <section id="reportPage" class="page">
+      <div class="card">
+        <h2>Reports</h2>
+        <p class="muted">View users, events, RSVPs, and attendance records.</p>
+
+        <h3>Users</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>User ID</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Role</th>
+            </tr>
+          </thead>
+          <tbody id="usersTable"></tbody>
+        </table>
+
+        <h3>Events</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Event ID</th>
+              <th>Event Name</th>
+              <th>Date</th>
+              <th>Location</th>
+              <th>Created By</th>
+            </tr>
+          </thead>
+          <tbody id="eventsTable"></tbody>
+        </table>
+
+        <h3>RSVPs</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>RSVP ID</th>
+              <th>User ID</th>
+              <th>Event ID</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="rsvpsTable"></tbody>
+        </table>
+
+        <h3>Attendance</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Attendance ID</th>
+              <th>User ID</th>
+              <th>Event ID</th>
+              <th>Attended</th>
+            </tr>
+          </thead>
+          <tbody id="attendanceTable"></tbody>
+        </table>
+      </div>
     </section>
   </main>
-
-  <footer>
-    <p>BlueGrid | IS 436 Deliverable 5</p>
-  </footer>
 
   <script src="script.js"></script>
 </body>
