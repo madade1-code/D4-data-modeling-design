@@ -32,30 +32,45 @@
 
     <section id="loginPage" class="page active-page">
       <div class="card">
-        <h2>Login</h2>
-        <p class="muted">Enter your account information to access the system.</p>
+        <h2 id="authTitle">Login</h2>
+        <p class="muted">Sign in or register to use the system.</p>
+
+        <div class="auth-toggle">
+          <button type="button" id="showLoginBtn" class="active">Login</button>
+          <button type="button" id="showRegisterBtn">Register</button>
+        </div>
 
         <form id="loginForm">
-          <label>Name</label>
-          <input type="text" id="loginName" placeholder="Enter your name" required />
-
           <label>Email</label>
           <input type="email" id="loginEmail" placeholder="Enter your email" required />
 
           <label>Password</label>
           <input type="password" id="loginPassword" placeholder="Enter password" required />
 
+          <button type="submit">Login</button>
+        </form>
+
+        <form id="registerForm" style="display:none;">
+          <label>Name</label>
+          <input type="text" id="registerName" placeholder="Enter your name" required />
+
+          <label>Email</label>
+          <input type="email" id="registerEmail" placeholder="Enter your email" required />
+
+          <label>Password</label>
+          <input type="password" id="registerPassword" placeholder="At least 6 characters" required />
+
           <label>Role</label>
-          <select id="loginRole" required>
-            <option value="">Select role</option>
+          <select id="registerRole" required>
             <option value="member">Member</option>
             <option value="officer">Club Officer</option>
           </select>
 
-          <button type="submit">Login</button>
+          <button type="submit">Register</button>
         </form>
 
-        <p id="loginMessage" class="success-message"></p>
+        <p id="authMessage" class="success-message"></p>
+        <button type="button" id="logoutBtn" style="display:none; margin-top:12px;">Log out</button>
       </div>
     </section>
 
@@ -72,7 +87,7 @@
         </div>
 
         <div class="stat-card">
-          <h3>Total RSVPs</h3>
+          <h3>RSVPs (Going)</h3>
           <p id="rsvpCount">0</p>
         </div>
 
@@ -113,12 +128,13 @@
     <section id="rsvpPage" class="page">
       <div class="card">
         <h2>RSVP to Event</h2>
-        <form id="rsvpForm">
-          <label>User ID</label>
-          <input type="number" id="rsvpUserId" placeholder="1" required />
+        <p class="muted">You must be logged in to RSVP.</p>
 
-          <label>Event ID</label>
-          <input type="number" id="rsvpEventId" placeholder="1" required />
+        <form id="rsvpForm">
+          <label>Event</label>
+          <select id="rsvpEventId" required>
+            <option value="">Select event</option>
+          </select>
 
           <label>RSVP Status</label>
           <select id="rsvpStatus" required>
@@ -194,8 +210,8 @@
           <thead>
             <tr>
               <th>RSVP ID</th>
-              <th>User ID</th>
-              <th>Event ID</th>
+              <th>User</th>
+              <th>Event</th>
               <th>Status</th>
             </tr>
           </thead>
@@ -207,8 +223,8 @@
           <thead>
             <tr>
               <th>Attendance ID</th>
-              <th>User ID</th>
-              <th>Event ID</th>
+              <th>User</th>
+              <th>Event</th>
               <th>Attended</th>
             </tr>
           </thead>
